@@ -2,6 +2,8 @@ import { Sequelize } from 'sequelize-typescript';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../Constants';
 import { databaseConfig } from './database.config';
 import { Categorias } from './Models/categorias.entity';
+//import { Estoque } from './Models/estoque.entity';
+import { Produtos } from './Models/produtos.entity';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,
@@ -22,7 +24,7 @@ export const databaseProviders = [{
         }
 
         const sequelize = new Sequelize(config);
-        sequelize.addModels([Categorias]);
+        sequelize.addModels([Categorias, Produtos, /*Estoque*/]);
         await sequelize.sync();
         return sequelize;
     },

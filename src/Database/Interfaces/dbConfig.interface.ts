@@ -8,6 +8,7 @@ export interface IDatabaseConfigAttributes {
     urlDatabase?: string;
     define: {
         timestamps: boolean;
+        freezeTableName: boolean;
     }
 }
 
