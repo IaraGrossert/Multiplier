@@ -13,6 +13,7 @@ export const databaseConfig: IDatabaseConfig = {
         dialect: process.env.DB_DIALECT,
         define: {
             timestamps: false,
+            freezeTableName: true
         }
     },
     test: {
@@ -24,6 +25,7 @@ export const databaseConfig: IDatabaseConfig = {
         dialect: process.env.DB_DIALECT,
         define: {
             timestamps: false,
+            freezeTableName: true
         }
     },
     production: {
@@ -34,6 +36,7 @@ export const databaseConfig: IDatabaseConfig = {
         dialect: process.env.DB_DIALECT,
         define: {
             timestamps: false,
+            freezeTableName: true
         }
     },
 };
