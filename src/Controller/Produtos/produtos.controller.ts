@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
+import { Produtos } from 'src/Database/Models/produtos.entity';
 import { ProdutosService } from 'src/Service/Produtos/produtos.service';
 
 @Controller('produtos')
@@ -17,25 +18,34 @@ export class ProdutosController {
 
     @Post()
     addProdutos(
+        @Body('idCategoria') idCategoria: number, 
         @Body('codigo') prodCodigo: string, 
-        @Body('titulo') prodTitulo: string, 
+        @Body('nome') prodNome: string,
+        @Body('descricao') prodDescricao: string,
+        @Body('valor') prodValor: number,
         @Body('status') prodStatus: number
     ): any {
-        return null;/*this.produtosService.insertProduct(
-            {codigo: prodCodigo,
-            titulo: prodTitulo,
-            status: prodStatus} as Produtos);*/
+        return this.produtosService.insertProduct(
+            {idCategoria: idCategoria,
+                codigo: prodCodigo,
+                nome: prodNome,
+                descricao: prodDescricao,
+                valor: prodValor,
+                status: prodStatus } as Produtos);
     }
 
     @Patch(':id')
     updateProdutos(
         @Param('id') id: number,
-        @Body('codigo') prodCodigo: string,
-        @Body('titulo') prodTitulo: string,
+        @Body('idCategoria') idCategoria: number, 
+        @Body('codigo') prodCodigo: string, 
+        @Body('nome') prodNome: string,
+        @Body('descricao') prodDescricao: string,
+        @Body('valor') prodValor: number,
         @Body('status') prodStatus: number
         ){
 
-        return this.produtosService.updateProduct(id, prodCodigo, prodTitulo, prodStatus);
+        return this.produtosService.updateProduct(id, idCategoria, prodCodigo, prodNome, prodDescricao, prodValor, prodStatus);
     }
 
     @Delete(':id')

@@ -20,19 +20,27 @@ export class ProdutosService {
         return await this.produtoRepository.findAll<Produtos>();
     }
     
-    async updateProduct(id: number, codigo: string, titulo: string, status: number){
-        
+    async updateProduct(id: number, idCategoria: number, codigo: string, nome: string, descricao: string, valor: number, status: number){
         const updatedProdutos = await this.produtoRepository.findOne<Produtos>({ where: { id } });
 
         if(!updatedProdutos)
             throw new NotFoundException('Produto não encontrado');
         
-        if(codigo){
+        if(idCategoria)
+            updatedProdutos.idCategoria = idCategoria;
+
+        if(codigo)
             updatedProdutos.codigo = codigo;
-        }
-        if(titulo){
-            //updatedProdutos. = titulo;
-        }
+
+        if(nome)
+            updatedProdutos.nome = nome;
+        
+        if(descricao)
+            updatedProdutos.descricao = descricao;
+
+        if(valor)
+            updatedProdutos.valor = valor;
+        
         if(status != null || status != undefined){
             updatedProdutos.status = status;
         }
