@@ -1,6 +1,6 @@
 import { Table, Column, Model, DataType, ForeignKey, HasOne } from 'sequelize-typescript';
 import { Categorias } from './categorias.entity';
-//import { Estoque } from './estoque.entity';
+import { Estoque } from './estoque.entity';
 
 @Table
 export class Produtos extends Model<Produtos> {
@@ -49,6 +49,6 @@ export class Produtos extends Model<Produtos> {
     })
     status: number;
 
-    /*@HasOne(() => Estoque, {onDelete: 'CASCADE'})
-    estoque = Estoque;*/
+    @HasOne(() => Estoque, {onDelete: 'CASCADE'})
+    estoque = Estoque;
 }
