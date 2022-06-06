@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const database = require('../postgresDatabase.provider');
+const database = require('../postgreSQL.provider');
 
 const Estoque = database.define('Estoque', {
     id: {

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const database = require('../postgresDatabase.provider');
+const database = require('../postgreSQL.provider');
 const Produto = require('./produtos.entity');
 
 const Categoria = database.define('Categorias', {
