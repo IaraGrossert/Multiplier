@@ -37,7 +37,7 @@ export class Produtos extends Model<Produtos> {
     descricao: string;
 
     @Column({
-        type: DataType.NUMBER,
+        type: DataType.DECIMAL,
         allowNull: false
     })
     valor: number;
