@@ -14,6 +14,9 @@ export const databaseConfig: IDatabaseConfig = {
         define: {
             timestamps: false,
             freezeTableName: true
+        },
+        dialectOptions: {
+            decimalNumbers: true
         }
     },
     test: {
@@ -26,6 +29,9 @@ export const databaseConfig: IDatabaseConfig = {
         define: {
             timestamps: false,
             freezeTableName: true
+        },
+        dialectOptions: {
+            decimalNumbers: true
         }
     },
     production: {
@@ -37,6 +43,9 @@ export const databaseConfig: IDatabaseConfig = {
         define: {
             timestamps: false,
             freezeTableName: true
+        },
+        dialectOptions: {
+            decimalNumbers: true
         }
     },
 };

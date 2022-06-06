@@ -9,7 +9,10 @@ export interface IDatabaseConfigAttributes {
     define: {
         timestamps: boolean;
         freezeTableName: boolean;
-    }
+    },
+    dialectOptions: {
+        decimalNumbers: boolean;
+    },
 }
 
 export interface IDatabaseConfig {
