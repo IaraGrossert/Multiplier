@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Inject, NotImplementedException } from '@nestjs/common';
 import { Estoque } from '../../Database/Models/estoque.entity';
-import { ESTOQUE_REPOSITORY } from 'src/Constants';
+import { ESTOQUE_REPOSITORY, MESSAGE_NOT_IMPLEMENTED_EXCEPTION_STOCK, MESSAGE_PRODUCT_NOT_FOUND } from 'src/Constants';
 import { EstoqueDto } from 'src/Module/Estoque/dto/estoque.dto';
 
 @Injectable()
@@ -9,16 +9,19 @@ export class EstoqueService {
     constructor(@Inject(ESTOQUE_REPOSITORY) private readonly estoqueRepository: typeof Estoque) { };
 
     async getSingleStock(id: number): Promise<Estoque>{
-        return await this.estoqueRepository.findOne<Estoque>({ where: { idProduto: id } });
+        const result = await this.estoqueRepository.findOne<Estoque>({ where: { idProduto: id } });
+
+        if(!result)
+            throw new NotFoundException(MESSAGE_PRODUCT_NOT_FOUND);
+
+        return result;
     }
     
     async updateStock(idProduto: number, quantidade: number, reserva: number, status: number){
-
         const updatedEstoque = await this.estoqueRepository.findOne<Estoque>({ where: { idProduto: idProduto } });
-        console.log(updatedEstoque);
 
         if(!updatedEstoque)
-            throw new NotFoundException('Estoque não encontrado');
+            throw new NotFoundException(MESSAGE_PRODUCT_NOT_FOUND);
         
         if(quantidade)
             updatedEstoque.quantidade = quantidade;
@@ -33,6 +36,6 @@ export class EstoqueService {
     }
 
     async deleteStock(){
-        throw new NotImplementedException('Não se pode deletar um estoque.');
+        throw new NotImplementedException(MESSAGE_NOT_IMPLEMENTED_EXCEPTION_STOCK);
     }
 }
