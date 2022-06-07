@@ -3,7 +3,7 @@ USE multiplierdb;
 
 CREATE TABLE Categorias(
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,										#Chave primária da tabela
-    codigo VARCHAR(50) NOT NULL,												#Código da Categoria (slug)
+    codigo VARCHAR(50) UNIQUE NOT NULL,											#Código da Categoria (slug)
     titulo VARCHAR(100) NOT NULL,												#Título da Categoria
     status INTEGER NOT NULL														#0 - Inativo, 1 - Ativo
 );
@@ -31,7 +31,7 @@ DELETE FROM Categorias WHERE id = 1;
 CREATE TABLE Produtos(
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,										#Chave primária da tabela
     idCategoria INTEGER,														#id da Categoria (fk)
-    codigo VARCHAR(100) NOT NULL,												#SKU do Produto
+    codigo VARCHAR(100) UNIQUE NOT NULL,										#SKU do Produto
     nome VARCHAR(100) NOT NULL,													#Nome do Produto	
     descricao TEXT NOT NULL,													#Descrição do Produto
     valor DECIMAL(6,2),															#Valor do Produto
